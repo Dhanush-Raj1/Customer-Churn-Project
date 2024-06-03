@@ -3,18 +3,24 @@ import os
 from datetime import datetime
 
 
-                                       
-log_file = f"{datetime.now().strftime('%d_%m_%Y_%H_%M_%S')}.log"
-logs_path = os.path.join(os.getcwd(), "logs", log_file) 
-os.makedirs(logs_path, exist_ok=True)
+# create log file name                                         
+logs_file_name = datetime.now().strftime('%d_%m_%Y_%H_%M_%S') + ".log"          # ".log" adds .log extension to the date,time resulting in a log file
 
-log_file_path = os.path.join(logs_path, log_file)
+# create "logs" folder
+os.makedirs("logs", exist_ok=True)     # 'exist_ok=True' if the "logs" folder already exits don't raise an error
 
-logging.basicConfig( filename=log_file_path,
+# path for storing log files(in current directory, inside the logs folder, with the log file name)
+logs_file_path = os.path.join(os.getcwd(), "logs", logs_file_name) 
+
+# configure logging
+logging.basicConfig(filename=logs_file_path,
+                    # format of logging message 
                     format="[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s",
+                    # log those messages with severity level "INFO" and above
                     level=logging.INFO,)
 
 
+# test logging setup 
 if __name__ == "__main__":
     logging.info("Logging has started")
     
