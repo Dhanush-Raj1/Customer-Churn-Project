@@ -17,6 +17,7 @@ logging.basicConfig(filename=logs_file_path,
                     # format of logging message 
                     format="[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s",
                     # log those messages with severity level "INFO" and above
+                    # there are different logging levels 
                     level=logging.INFO,)
 
 
