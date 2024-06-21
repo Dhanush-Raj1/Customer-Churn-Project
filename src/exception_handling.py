@@ -25,9 +25,11 @@ def error_message_detail(error, error_detail:sys):           # sys module to ext
     
     
     
-class CustomException(Exception):
+class CustomException(Exception):                   # CustomException inherits from the built-in 'Exception' class.
     def __init__(self, error_message, error_detail:sys):
-        super().__init__(error_message)             # initializing the base Exception with error_message
+        super().__init__(error_message)             # initializing the base Exception with error_message 
+                                                    # inheritance   
+        
         self.error_message = error_message_detail(error_message, error_detail=error_detail)       # create and store the detailed error message
     
     def __str__(self):                    # '__str__' - representation method - string 
