@@ -1,12 +1,14 @@
-python == 3.9.19 
-pandas == 2.1.1
-numpy == 1.26.2 
+pandas
+numpy
 matplotlib
-seaborn 
+seaborn
 plotly
 scikit-learn
-imblearn 
+imblearn
+dill
 
--e.
-# tells pip to install the current package in "editable" mode, changes to the code are reflected immediately without reinstalling the package. 
-# This line also ensures that the setup.py file is executed, which is necessary for package setup.
+# The following line ensures that the setup.py file is executed, which is necessary for package setup in editable mode.
+# -e. should be used only when executing 'pip install -r requirements.txt' for the first time only 
+# comment it when installing requirements.txt after the first tttempt
+
+# -e .

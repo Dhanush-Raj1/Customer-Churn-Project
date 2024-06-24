@@ -4,7 +4,7 @@ from typing import List
 
 
 # remove '-e .' from requirements.py 
-hypen_e_dot = '-e .'
+hypen_e_dot = "-e ."
 
                                                       # file_path:str - file_path is a string 
 def get_requirements(file_path:str)->List[str]:       #->List[str] - return type hint which is a list where each element is a string
@@ -18,8 +18,8 @@ def get_requirements(file_path:str)->List[str]:       #->List[str] - return type
         requirements = [req.replace("/n", "") for req in requirements]
         
         # remove -e . as it is not required in the list of requirements for setup
-        if hypen_e_dot in requirements:
-            requirements.remove(hypen_e_dot) 
+        if '-e .' in requirements:
+            requirements.remove('-e .') 
             
     return requirements
 
@@ -33,4 +33,4 @@ setup(
       author = 'Dhanush Raj',
       author_email ='dhanushlogan1004@gmail.com',
       packages = find_packages(),
-      install_requires = get_requirements('requirements.txt')  ) 
+      install_requires = get_requirements('requirements.txt') ) 
