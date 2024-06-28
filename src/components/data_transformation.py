@@ -2,10 +2,12 @@ import sys
 import os
 from src.exception_handling import CustomException
 from src.logger import logging
+from src.utils import save_object
 
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder, Normalizer
+from imblearn.combine import SMOTEENN
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 
@@ -32,18 +34,17 @@ class DataTransformation:
         """
         Building preprocessor object and returning it
         """
-        
         try:
             num_cols = ['MonthlyCharges', 'TotalCharges']
             
             cat_cols = ['gender', 'SeniorCitizen', 'Partner', 'Dependents',
                         'tenure', 'PhoneService', 'MultipleLines', 'InternetService',
                         'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
-                        'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling']
+                        'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod']
             
-            num_pipeline = Pipeline(steps = [('scaler', Normalizer())])
+            num_pipeline = Pipeline(steps = [('scaler', Normalizer() )])
             
-            cat_pipeline = Pipeline(steps = [('encoder', OneHotEncoder())])
+            cat_pipeline = Pipeline(steps = [('encoder', OneHotEncoder() )])
             
             logging.info(f"Numerical columns: {num_cols}")
             logging.info(f"Categorical columns: {cat_cols}")
@@ -66,41 +67,78 @@ class DataTransformation:
         try: 
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
-            
             logging.info("Imported train and test data.")
-            logging.info("Obtaining preprocessing object.")
             
+            
+            
+            logging.info("Obtaining preprocessing object.")
             # calling the preprocessor from get_data_transformer_object 
             preprocessing_obj = self.get_data_transformer_object()
+            
             
             target_column_name = 'Churn'
             num_cols = ['MonthlyCharges', 'TotalCharges']
             
-            input_feature_train_df = train_df.drop(columns=target_column_name, axis=1)
-            target_feature_train_df = train_df[target_column_name]
             
-            input_feature_test_df = test_df.drop(columns=target_column_name, axis=1)
-            target_feature_test_df = test_df[target_column_name]
             
-            logging.info("Preprocessing train and test set has been started.")
+            # train set
+            X_train = train_df.drop(columns=target_column_name, axis=1)
+            y_train = train_df[target_column_name]
             
-            input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df)
-            input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
+            # test set
+            X_test = test_df.drop(columns=target_column_name, axis=1)
+            y_test = test_df[target_column_name]
             
-            # concatenate the transformed input and target features to a single numpy array 
+    
+            
+            logging.info("Preprocessing train and test sets has been started.")
+            X_train_arr = preprocessing_obj.fit_transform(X_train)
+            X_test_arr = preprocessing_obj.transform(X_test)
+            
+            
+            
+            # handling imbalance 
+            logging.info("Handling imbalance.")
+            smote_enn = SMOTEENN(random_state=42)
+            X_train_resampled, y_train_resampled = smote_enn.fit_resample(X_train_arr, y_train)
+            
+            
+            #X_train_df = pd.DataFrame(X_train_resampled, columns=X_train.columns)
+            #y_train_df = pd.DataFrame(y_train_resampled, columns=y_train.columns)
+            
+            
+            logging.info(f"Shape of X_train before SMOTEENN:{X_train_arr.shape}")
+            logging.info(f"Shape of X_train after SMOTEENN: {X_train_resampled.shape}")
+            logging.info(f"Shape of y_train before SMOTEEN: {y_train.shape}")
+            logging.info(f"Shape of y_train after SMOTEENN: {y_train_resampled.shape}")
+            
+            logging.info(f"Distribution of Churn before SMOTEENN: {y_train.value_counts()}")
+            logging.info(f"Distribution of Churn after SMOTEENN: {y_train_resampled.value_counts()}")
+            
+            logging.info("Imbalance has been handled.")
+
+
+        
+            # concatenate the transformed train & test_arr to a single numpy array 
             # np.c_ function to concatenate column wise                                                                               
-            train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
-            test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
+            train_arr = np.c_[X_train_resampled, y_train_resampled]
+            test_arr = np.c_[X_test_arr, np.array(y_test)]
+            
+            
             
             # saving the preprocessing object 
             save_object(file_path = self.config.preprocessor_obj_file_path,
                         obj = preprocessing_obj)
             
+            
+
             logging.info("Preprocessing object has been saved.")
+            logging.info("Data transformation process has been completed.")
             
             return(train_arr, 
                    test_arr,
                    self.config.preprocessor_obj_file_path)
+        
             
         except Exception as e:
             raise CustomException(e,sys)
