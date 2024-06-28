@@ -96,7 +96,6 @@ smote_enn = SMOTEENN(random_state=42)
 X_train_resampled, y_train_resampled = smote_enn.fit_resample(X_train, y_train)
 print("Original X_train and y_train size: ", X_train.shape, y_train.shape)
 print("Resampled X_train, y_train size: ", X_train_resampled.shape, y_train_resampled.shape)
-
 # original distribution 
 print(y_train.value_counts())
 plt.bar(y_train.value_counts().index, y_train.value_counts().values, color=['lightcoral', 'brown'])
