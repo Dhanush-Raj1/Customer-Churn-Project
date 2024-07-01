@@ -5,6 +5,8 @@ seaborn
 plotly
 scikit-learn
 imblearn
+xgboost
+catboost 
 dill
 
 # The following line ensures that the setup.py file is executed, which is necessary for package setup in editable mode.
