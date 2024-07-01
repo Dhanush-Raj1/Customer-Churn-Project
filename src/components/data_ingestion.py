@@ -3,6 +3,7 @@ import sys
 from src.exception_handling import CustomException
 from src.logger import logging
 from src.components.data_transformation import DataTransformation
+from src.components.model_trainer1 import ModelTrainer
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -69,14 +70,20 @@ class DataIngestion:
 
 if __name__ =="__main__":
     
-    # initiatize DataIngestion object
-    ingestion_obj = DataIngestion()
-    # call the initiate_data_ingestion function    
-    train_data_path, test_data_path = ingestion_obj.initiate_data_ingestion()
+    # DataIngestion object
+    data_ingestion = DataIngestion()
+    # initiate_data_ingestion function    
+    train_data_path, test_data_path = data_ingestion.initiate_data_ingestion()
     
     
-    # initiate DataTransformation object 
+    # DataTransformation object 
     data_transformation = DataTransformation()
-    # call the initiate_data_transformation function 
-    data_transformation.initiate_data_transformation(train_data_path, test_data_path)
+    # initiate_data_transformation function 
+    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_data_path, test_data_path)
+    
+    
+    # ModelTrainer object
+    model_trainer = ModelTrainer()
+    model_trainer.initiate_model_trainer(train_arr, test_arr)
+    
     
