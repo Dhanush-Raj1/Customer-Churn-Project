@@ -8,6 +8,7 @@ imblearn
 xgboost
 catboost 
 dill
+flask
 
 # The following line ensures that the setup.py file is executed, which is necessary for package setup in editable mode.
 # -e. should be used only when executing 'pip install -r requirements.txt' for the first time only 

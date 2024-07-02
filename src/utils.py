@@ -8,6 +8,8 @@ import dill
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
 
+
+
 def save_object(file_path, obj): 
     """
     Save a python object to a file using dill
@@ -36,20 +38,22 @@ def save_object(file_path, obj):
         
         
 def evaluate_models(X_train, y_train, X_test, y_test, models, params):
+    """
+    Evaluates a model using gridsearchcv
+    Returns: report containing model names and its train, test accuracy
+    """
     
     try:
         
         report = {} 
         logging.info("Starting model evaluation process.")
         
-        for i in range(len(list(models))):
-            model = list(models.values())[i]
-            param = params[list(models.keys())[i]]
+        for model_name, model in models.items():
+            param = params[model_name]
             
-            gs = GridSearchCV(model, param, cv=5)
-            logging.info("Starting gridsearch for {model}")
+            gs = GridSearchCV(model, param, cv=8)
+            logging.info(f"Starting gridsearch for {model_name}")
             gs.fit(X_train, y_train)
-            logging.info("Completed gridsearch for {model}")
             
             model.set_params(**gs.best_params_)
             model.fit(X_train, y_train)
@@ -60,7 +64,11 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
             train_model_score = accuracy_score(y_train, y_train_pred)
             test_model_score = accuracy_score(y_test, y_test_pred)
             
-            report[list(models.keys())[i]] = test_model_score
+            logging.info(f"Train and test accuracy score for {model_name}: {train_model_score, test_model_score}")
+            logging.info(f"Completed gridsearch for {model_name}")
+            
+            report[model_name] = {'train_accuracy': train_model_score, 
+                                  'test_accuracy': test_model_score }
             
         logging.info("Model evalutation process has beeen completed.")
         return report
@@ -74,6 +82,10 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
     
     
 def load_object(file_path):
+    """
+    Loads a saved object from the respective file path
+    object: pkl file (saved using dill.dump)
+    """
     
     try:
         with open(file_path, "rb") as file_obj:

@@ -102,11 +102,13 @@ class ModelTrainer:
                                                'n_estimators': [100, 200, 300, 400],
                                                #'border_count': [32, 64, 128, 254], 
                                                #'bagging_temperature': [0, 0.5, 1], 
-                                               #'random_strength': [0, 0.5, 1] }, 
+                                               #'random_strength': [0, 0.5, 1] },
+                                                                                ,} 
                                     
                        "Support vector classifier": {'C': [0.1, 1, 10, 100], 
                                                     'kernel': ['linear', 'rbf', 'poly', 'sigmoid'],
-                                                    'gamma': ['scale', 'auto']}   }
+                                                    'gamma': ['scale', 'auto']}   
+                       }
                   
                   
             model_report = evaluate_models(X_train=X_train, y_train=y_train, 
