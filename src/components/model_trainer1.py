@@ -88,7 +88,7 @@ class ModelTrainer:
                                        #'sub_sample': [0.6, 0.8, 1.0],
                                        #'colsample_bytree': [0.6, 0.8, 1.0]},
                 
-                "Catboost classifier": {'iterations': [500, 600,],
+                "Catboost classifier": {'iterations': [500],
                                         #'n_estimators': [100, 200, 300, 400],
                                         'depth': [4, 6, 8, 10],
                                         'learning_rate': [0.001, 0.05, 0.1],
