@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Churn Prediction</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="pp_style.css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="row">
+                <nav class="navbar">
+                    <h1>Churn Predictor</h1>
+                    <ul>
+                        <li><a href="home_page.html#services">Services</a></li>
+                        <li><a href="home_page.html#about">About</a></li>
+                        <li><a href="home_page.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="maindata">
+        <div class="content">
+            <h1>Enter Customer Data</h1>
+            <form action="predict" method="post" class="predictdata">
+                <label for="MonthlyCharges">Monthly Charges:</label>
+                <input type="text" id="MonthlyCharges" name="MonthlyCharges" required><br>
+
+                <label for="TotalCharges">Total Charges:</label>
+                <input type="text" id="TotalCharges" name="TotalCharges" required><br>
+
+                <label for="Gender">Gender:</label>
+                <input type="text" id="Gender" name="Gender" required><br>
+
+                <label for="Tenure">Tenure (in months):</label>
+                <input type="text" id="Tenure" name="Tenure" required><br>
+
+                <label for="Partner">Partner (Yes/No):</label>
+                <input type="text" id="Partner" name="Partner" required><br>
+
+                <button type="submit">Predict</button>
+            </form>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footerclass">
+            <p>&copy; 2024 Churn Predictor. All rights reserved.</p>
+            <p>contact: info@churnpredictor.com | 0123-4567</p>
+        </div>
+    </footer>
+</body>
+</html>
