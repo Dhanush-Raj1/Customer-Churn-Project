@@ -45,7 +45,6 @@ class DataIngestion:
             logging.info("Cleaned data has been loaded.")
             
             
-            
             logging.info("Train and test split has been initiated.")
             train_set, test_set = train_test_split(df, test_size=0.3, random_state=42)
             train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
@@ -53,7 +52,6 @@ class DataIngestion:
             
             logging.info(f"Shape of train set: {train_set.shape}")
             logging.info(f"Shape of test set: {test_set.shape}")
-            
             
             
             logging.info("Data ingestion process has been completed.")
@@ -68,22 +66,22 @@ class DataIngestion:
     
 
 
-if __name__ =="__main__":
+#if __name__ =="__main__":
     
     # DataIngestion object
-    data_ingestion = DataIngestion()
+    #data_ingestion = DataIngestion()
     # initiate_data_ingestion function    
-    train_data_path, test_data_path = data_ingestion.initiate_data_ingestion()
+    #train_data_path, test_data_path = data_ingestion.initiate_data_ingestion()
     
     
     # DataTransformation object 
-    data_transformation = DataTransformation()
+    #data_transformation = DataTransformation()
     # initiate_data_transformation function 
-    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_data_path, test_data_path)
+    #train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_data_path, test_data_path)
     
     
     # ModelTrainer object
-    model_trainer = ModelTrainer()
-    model_trainer.initiate_model_trainer(train_arr, test_arr)
+    #model_trainer = ModelTrainer()
+    #model_trainer.initiate_model_trainer(train_arr, test_arr)
     
     

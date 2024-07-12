@@ -6,10 +6,13 @@ from src.utils import save_object
 
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import OneHotEncoder, Normalizer
+from sklearn.preprocessing import OneHotEncoder, Normalizer, MinMaxScaler, StandardScaler
+from sklearn.impute import SimpleImputer
 from imblearn.combine import SMOTEENN
+from imblearn.over_sampling import KMeansSMOTE
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
 
 from dataclasses import dataclass
 
@@ -18,15 +21,22 @@ from dataclasses import dataclass
 # Data transformation configuration class
 @dataclass
 class DataTransformationConfig:
+    
+    # path for preprocessor object 
     preprocessor_obj_file_path = os.path.join('artifacts', "preprocessor.pkl")
     
 
 # Data transformation class     
-class DataTransformation:    
+class DataTransformation:
+    """
+    Import the cleaned data 
+    Performs train, test split & Saves it in artifacts folder 
+    Preprocess the train, test sets and returns them as an array 
+    """ 
     
     # Initiate the configuration object
     def __init__(self):
-        self.config = DataTransformationConfig()
+        self.data_transformation_config = DataTransformationConfig()
     
 
     def get_data_transformer_object(self):
@@ -42,9 +52,12 @@ class DataTransformation:
                         'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
                         'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod']
             
-            num_pipeline = Pipeline(steps = [('scaler', Normalizer() )])
+            num_pipeline = Pipeline(steps = [('imputer', SimpleImputer(strategy='median')),
+                                             #('scaler', MinMaxScaler()),
+                                             ('scaler', StandardScaler() )])
             
-            cat_pipeline = Pipeline(steps = [('encoder', OneHotEncoder() )])
+            cat_pipeline = Pipeline(steps = [('imputer', SimpleImputer(strategy='most_frequent')),
+                                             ('encoder', OneHotEncoder() )])
             
             logging.info(f"Numerical columns: {num_cols}")
             logging.info(f"Categorical columns: {cat_cols}")
@@ -65,6 +78,8 @@ class DataTransformation:
         """ 
         
         try: 
+            
+            logging.info("Data transformation process has been started.")
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
             logging.info("Imported train and test data.")
@@ -99,8 +114,9 @@ class DataTransformation:
             
             # handling imbalance 
             logging.info("Handling imbalance.")
-            smote_enn = SMOTEENN(random_state=42)
-            X_train_resampled, y_train_resampled = smote_enn.fit_resample(X_train_arr, y_train)
+            #smote_enn = SMOTEENN(random_state=42)
+            kmeans_smote = KMeansSMOTE(sampling_strategy='minority', k_neighbors=5, random_state=42)
+            X_train_resampled, y_train_resampled = kmeans_smote.fit_resample(X_train_arr, y_train)
             
             
             #X_train_df = pd.DataFrame(X_train_resampled, columns=X_train.columns)
@@ -127,7 +143,7 @@ class DataTransformation:
             
             
             # saving the preprocessing object 
-            save_object(file_path = self.config.preprocessor_obj_file_path,
+            save_object(file_path = self.data_transformation_config.preprocessor_obj_file_path,
                         obj = preprocessing_obj)
             
             
@@ -137,7 +153,7 @@ class DataTransformation:
             
             return(train_arr, 
                    test_arr,
-                   self.config.preprocessor_obj_file_path)
+                   self.data_transformation_config.preprocessor_obj_file_path)
         
             
         except Exception as e:

@@ -37,71 +37,71 @@ class ModelTrainer:
         """
         try:
             logging.info("Model training has been started.")
-            logging.info("Train, test split has been initiated")
+
             X_train, X_test, y_train, y_test = (train_array[:, :-1], test_array[:, :-1],
                                                 train_array[:, -1], test_array[:, -1])
+            logging.info("Train, test split has been completed.")
 
-            models = { #"Logistic regression": LogisticRegression(),
-                       #"Naive bayes": GaussianNB(),
-                       #"Knn classifier": KNeighborsClassifier(),
-                       #"Decision tree": DecisionTreeClassifier(),
-                       #"Random forest": RandomForestClassifier(),
-                       #"Adaboost classifier": AdaBoostClassifier(),
-                       #"Xgboost classifier": XGBClassifier(),
-                       "Catboost classifier": CatBoostClassifier(),
-                       "Support vector classifier": SVC()  
-                     }
+            models = { "Logistic regression": LogisticRegression(),
+                       "Naive bayes": GaussianNB(),
+                       "Knn classifier": KNeighborsClassifier(),
+                       "Decision tree": DecisionTreeClassifier(),
+                       "Random forest": RandomForestClassifier(),
+                       "Adaboost classifier": AdaBoostClassifier(),
+                       "Xgboost classifier": XGBClassifier(),
+                       #"Catboost classifier": CatBoostClassifier(),
+                       "Support vector classifier": SVC()  }
 
             params = {
-                #"Logistic regression": [ {'penalty': ['l2'], 'C': [0.01, 0.1, 1, 10, 100, 300],
-                                          #'solver': ['liblinear', 'lbfgs', 'saga', 'newton-cholesky']},
-                                         #{'penalty': ['l1'], 'C': [0.01, 0.1, 1, 10, 100, 300],
-                                          #'solver': ['liblinear', 'saga']},
-                                         #{'penalty': ['elasticnet'], 'C': [0.01, 0.1, 1, 10, 100, 300],
-                                          #'solver': ['saga'], 'l1_ratio': [0.5]} ],
+                "Logistic regression": [ {'penalty': ['l2'], 'C': [0.01, 0.1, 1, 10, 100, 300],
+                                          'solver': ['liblinear', 'lbfgs', 'saga', 'newton-cholesky']},
+                                         {'penalty': ['l1'], 'C': [0.01, 0.1, 1, 10, 100, 300],
+                                          'solver': ['liblinear', 'saga']},
+                                         {'penalty': ['elasticnet'], 'C': [0.01, 0.1, 1, 10, 100, 300],
+                                          'solver': ['saga'], 'l1_ratio': [0.5]} ],
                 
-                #"Naive bayes": {'var_smoothing': [1e-09, 1e-08, 1e-07, 1e-06, 1e-07]},
+                "Naive bayes": {'var_smoothing': [1e-09, 1e-08, 1e-07, 1e-06, 1e-07]},
                 
-                #"Knn classifier": {'n_neighbors': [3, 5, 7, 9, 11, 15, 20, 25, 30, 40, 50],
-                                   #'weights': ['uniform', 'distance'],
-                                   #'algorithm': ['brute', 'kd_tree', 'ball_tree']},
+                "Knn classifier": {'n_neighbors': [3, 5, 7, 9, 11, 15, 20, 25, 30, 40, 50],
+                                   'weights': ['uniform', 'distance'],
+                                   'algorithm': ['brute', 'kd_tree', 'ball_tree']},
                 
-                #"Decision tree": {'criterion': ['gini', 'entropy', 'log_loss'],
-                                  #'max_depth': [3, 5, 10, 15, 20, 25, 30, 40, 50],
-                                  #'min_samples_split': [2, 5, 10],
-                                  #'min_samples_leaf': [1, 2, 4],
-                                  #'max_features': [None, 'sqrt', 'log2']},
+                "Decision tree": {'criterion': ['gini', 'entropy', 'log_loss'],
+                                  'max_depth': [3, 5, 10, 15, 20, 25, 30, 40, 50],
+                                  'min_samples_split': [2, 5, 10],
+                                  'min_samples_leaf': [1, 2, 4],
+                                  'max_features': [None, 'sqrt', 'log2']},
                 
-                #"Random forest": {'n_estimators': [50, 100, 150, 200],
-                                  #'criterion': ['gini', 'entropy', 'log_logg'],
-                                  #'min_samples_split': [2, 5, 10],
-                                  #'min_samples_leaf': [1, 2, 4],
-                                  #'max_features': [None, 'sqrt', 'log2']},
+                "Random forest": {'n_estimators': [50, 100, 150, 200],
+                                  'criterion': ['gini', 'entropy', 'log_logg'],
+                                  'min_samples_split': [2, 5, 10],
+                                  'min_samples_leaf': [1, 2, 4],
+                                  'max_features': [None, 'sqrt', 'log2'],
+                                  'class_weight': ['balanced']},
                 
-                #"Adaboost classifier": {'estimator': [None, LogisticRegression(), KNeighborsClassifier()],
-                                        #'n_estimators': [10, 50, 100, 200, 300, 400],
-                                        #'learning_rate': [0.01, 0.1, 0.5, 1.0] },
+                "Adaboost classifier": {'estimator': [None, LogisticRegression(), KNeighborsClassifier()],
+                                        'n_estimators': [10, 50, 100, 200, 300, 400],
+                                        'learning_rate': [0.01, 0.1, 0.5, 1.0] },
                                                
-                #"Xgboost classifier": {'n_estimators': [50, 100, 200],
-                                       #'learning_rate': [0.01, 0.1, 0.2, 0.3, 0.6, 1.0],
-                                       #'max_depth': [3, 5, 7, 10],
-                                       #'sub_sample': [0.6, 0.8, 1.0],
-                                       #'colsample_bytree': [0.6, 0.8, 1.0]},
+                "Xgboost classifier": {'n_estimators': [50, 100, 200],
+                                       'learning_rate': [0.01, 0.1, 0.2, 0.3, 0.6, 1.0],
+                                       'max_depth': [3, 5, 7, 10],
+                                       'sub_sample': [0.6, 0.8, 1.0],
+                                       'colsample_bytree': [0.6, 0.8, 1.0]},
                 
-                "Catboost classifier": {'iterations': [500],
+                #"Catboost classifier": {'iterations': [500],
                                         #'n_estimators': [100, 200, 300, 400],
-                                        'depth': [4, 6, 8, 10],
-                                        'learning_rate': [0.001, 0.05, 0.1],
-                                        'l2_leaf_reg': [1, 3, 5, 7, 9],
+                                        #'depth': [4, 6, 8, 10],
+                                        #'learning_rate': [0.001, 0.05, 0.1],
+                                        #'l2_leaf_reg': [1, 3, 5, 7, 9],
                                         #'bagging_temperature': [0, 0.5, 1],
-                                        'random_strength': [0, 0.5, 1, 1.5, 2]},
+                                        #'random_strength': [0, 0.5, 1, 1.5, 2]},
                                                                             
                 
                 "Support vector classifier": {'C': [0.1, 1, 10, 100],
                                               'kernel': ['linear', 'rbf', 'poly', 'sigmoid'],
-                                              'gamma': ['scale', 'auto']}   
-                    
-                }
+                                              'gamma': ['scale', 'auto']}   }
+                
 
             model_report = evaluate_models(X_train=X_train, y_train=y_train,
                                            X_test=X_test, y_test=y_test,

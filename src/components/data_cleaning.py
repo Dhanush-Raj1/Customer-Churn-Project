@@ -123,8 +123,8 @@ class DataCleaning:
             raise CustomException(e, sys)
             
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
     
-    cleaning_obj = DataCleaning()
-    cleaning_obj.initiate_data_cleaning()
+    #cleaning_obj = DataCleaning()
+    #cleaning_obj.initiate_data_cleaning()
     

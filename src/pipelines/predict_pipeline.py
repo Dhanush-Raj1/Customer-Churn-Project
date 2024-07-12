@@ -28,6 +28,10 @@ class Predict:
     
 
 class NewData:
+    """
+    Returns the newdata as a dataframe
+    """
+    
     def __init__( self, gender: str,
                   SeniorCitizen: str, Partner: str, 
                   Dependents: str, tenure: int, 
