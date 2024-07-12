@@ -12,13 +12,13 @@ app = application
 # route for home page
 @app.route('/')
 def index():
-    return render_template('home.html')
+    return render_template('home_page.html')
 
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict_newdata():
     if request.method == 'GET':
-        return render_template('home.html')
+        return render_template('home_page.html')
     else:
         data = NewData( gender = request.form.get('gender'),
                         SeniorCitizen = request.form.get('SeniorCitizen'), 
