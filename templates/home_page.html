@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
     <title>Customer Churn Prediction</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hp_style.css') }}">
 </head>
 <body>
     <header>
@@ -23,7 +23,7 @@
                 <div class="content">
                     <h1>Predict and Prevent Customer Churn</h1>
                     <p>Empower your business with predictive analytics to anticipate and prevent customer churn in advance.</p>
-                    <a href="predict_page.html">Predict</a>
+                    <a href="{{ url_for('predict') }}">Predict</a>
                 </div>
             </section>
         </div>
@@ -86,7 +86,8 @@
         <div class="features">
             <div class="featurebox">
                 <div class="feature1">
-                    <img src="f11.jpg" alt="ai powered predictions.">
+                    <img src="{{ url_for('static', filename='images/f11.jpg') }}" alt="ai powered predictions.">
+                    <!--img src="images/f11.jpg" alt="ai powered predictions."-->
                     <div class="text">
                         <h2>AI-Powered Predictions</h2>
                         <p>Our state of the art machine learning models provide highly accurate churn predictions.</p>
@@ -95,7 +96,8 @@
             </div>
             <div class="featurebox">
                 <div class="feature2">
-                    <img src="f2.jpg" alt="Real Time Analytics.">
+                    <img src="{{ url_for('static', filename='images/f2.jpg') }}" alt="Real Time Analytics.">
+                    <!--img src="images/f2.jpg" alt="Real Time Analytics."-->
                     <div class="text">
                         <h2>Real-time analytics</h2>
                         <p>Get instant insights into customer behavior and churn risk factor.</p>
@@ -104,7 +106,7 @@
             </div>
             <div class="featurebox">
                 <div class="feature3">
-                    <img src="f3.jpg" alt="Actionable Insights.">
+                    <img src="{{ url_for('static', filename='images/f3.jpg') }}" alt="Actionable Insights.">
                     <div class="text">
                         <h2>Actionable Insights</h2>
                         <p>Receive tailored recommendations to reduce churn and increase customer retention.</p>
@@ -118,7 +120,9 @@
         <div class="about-container">
             <h2>About Us</h2>
             <p>At Churn Predictor, we're dedicated to helping businesses retain their valuable customers. Our cutting-edge AI technology analyzes customer behavior patterns to predict potential churn, allowing companies to take proactive measures.</p>
-            <p>With years of experience in data science and machine learning, our team has developed sophisticated models that provide accurate and timely predictions. We believe in empowering businesses with actionable insights to foster long-lasting customer relationships.</p>
+            <p>With a wealth of experience in data science and machine learning, our team has crafted sophisticated models that deliver precise and timely predictions. Our advanced algorithms delve deep into customer data, uncovering hidden trends and insights that traditional methods might overlook.
+               We believe in empowering businesses with actionable insights that not only prevent customer loss but also foster long-lasting relationships. By leveraging our expertise, companies can enhance their customer engagement strategies, improve satisfaction, and ultimately drive growth.</p>
+            <p>At Churn Predictor, our mission is to provide businesses with the tools they need to stay ahead in a competitive market. Trust us to help you unlock the full potential of your customer base and secure a prosperous future for your business.</p>
         </div>
     </section>
 

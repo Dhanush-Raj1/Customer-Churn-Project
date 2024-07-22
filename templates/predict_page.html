@@ -4,7 +4,7 @@
     <title>Customer Churn Prediction</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="pp_style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pp_style.css') }}">
 </head>
 <body>
     <header>
@@ -22,27 +22,243 @@
         </div>
     </header>
 
-    <section class="maindata">
+    <section class="data-input">
         <div class="content">
             <h1>Enter Customer Data</h1>
-            <form action="predict" method="post" class="predictdata">
-                <label for="MonthlyCharges">Monthly Charges:</label>
-                <input type="text" id="MonthlyCharges" name="MonthlyCharges" required><br>
+            
+            <div class="card">
+                <h3><img src="{{ url_for('static', filename='images/personal info.png') }}" class="icon">Personal Information</h3>
+            </div>
+                <!--h3>Personal Information</h3-->
+            
+            <!--form action="/predict" method="post" class="predictdata"-->
+            <form action="{{ url_for('predict')}}" method="post" class="predictdata">
 
-                <label for="TotalCharges">Total Charges:</label>
-                <input type="text" id="TotalCharges" name="TotalCharges" required><br>
+                <div class="form-row">
+                    <label for="Gender">Gender:</label>
+                    <select id="Gender" name="Gender" required>                                 
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
 
-                <label for="Gender">Gender:</label>
-                <input type="text" id="Gender" name="Gender" required><br>
+                <div class="form-row">
+                    <label for="Senior Citizen">Senior Citizen:</label>
+                    <select id="Senior Citizen" name="Senior Citizen" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
 
-                <label for="Tenure">Tenure (in months):</label>
-                <input type="text" id="Tenure" name="Tenure" required><br>
+                <div class="form-row">
+                    <label for="Partner">Partner:</label>
+                    <select id="Partner" name="Partner" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+    
+                <div class="form-row">
+                    <label for="Dependents">Dependents:</label>
+                    <select id="Dependents" name="Dependents" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            
+            <!--/form-->
 
-                <label for="Partner">Partner (Yes/No):</label>
-                <input type="text" id="Partner" name="Partner" required><br>
+                <div class="card">
+                    <h3><img src="{{ url_for('static', filename='images/services info.png') }}" class="icon">Services Information</h3>
+                </div>
 
-                <button type="submit">Predict</button>
+            <!--form action="predict" method="post" class="predictdata"-->
+                
+                <div class="form-row">
+                    <label for="Phone Service">Phone Service:</label>
+                    <select id="Phone Service" name="Phone Service" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="Multiple Lines">Multiple Lines:</label>
+                    <select id="Multiple Lines" name="Multiple Lines" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No phone service">No phone service</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="Internet Service">Internet Service:</label>
+                    <select id="Internet Service" name="Internet Service" required>
+                        <option value="">Select</option>
+                        <option value="DSL">DSL</option>
+                        <option value="Fiber optic">Fiber optic</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="Online Security">Online Security:</label>
+                    <select id="Online Security" name="Online Security" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">No internet service</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="Online Backup">Online Backup:</label>
+                    <select id="Online Backup" name="Online Backup" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">No internet service</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="Device Protection">Device Protection:</label>
+                    <select id="Device Protection" name="Device Protection" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">No internet service</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="Tech Support">Tech Support:</label>
+                    <select id="Tech Support" name="Tech Support" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">No internet service</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="Streaming TV">Streaming TV:</label>
+                    <select id="Streaming TV" name="Streaming TV" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">No internet service</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="Streaming Movies">Streaming Movies:</label>
+                    <select id="Streaming Movies" name="Streaming Movies" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">No internet service</option>
+                    </select>
+                </div>
+            <!--/form-->
+
+                <div class="card">
+                    <h3><img src="{{ url_for('static', filename='images/billing info.png') }}" class="icon">Billing Information</h3>
+                </div>
+
+            <!--form action="predict" method="post" class="predictdata"-->
+
+                <div class="form-row">
+                    <label for="Contract Type">Contract Type:</label>
+                    <select id="Contract Type" name="Contract Type" required>
+                        <option value="">Select</option>
+                        <option value="Month-to-month">Month-to-month</option>
+                        <option value="One year">One year</option>
+                        <option value="Two year">Two year</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="Paperless Billing">Paperless Billing:</label>
+                    <select id="Paperless Billing" name="Paperless Billing" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="Payment Method">Payment Method:</label>
+                    <select id="Payment Method" name="Payment Method" required>
+                        <option value="">Select</option>
+                        <option value="Electronic check">Electronic check</option>
+                        <option value="Mailed check">Mailed check</option>
+                        <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+                        <option value="Credit card (automatic)">Credit card (automatic)</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="Tenure (months)">Tenure (months):</label>
+                    <select id="Tenure (months)"  name="Tenure (months)" required>
+                        <option value="">Select</option>
+                        <option value="1-12">1-12</option>
+                        <option value="13-24">13-24</option>
+                        <option value="25-36">25-36</option>
+                        <option value="37-48">37-48</option>
+                        <option value="49-60">49-60</option>
+                        <option value="61-72">61-72</option>
+                    </select>
+                    <!--input type="text" id="Tenure" name="Tenure" placeholder="Tenure in months" required-->
+                </div>
+
+                <div class="form-row">
+                    <label for="Monthly Charges">Monthly Charges:</label>
+                    <!--input type="text" id="MonthlyCharges" name="MonthlyCharges" placeholder="Monthly charges" required-->
+                    <input type="number" id="Monthly Charges" name="Monthly Charges" step="0.1" placeholder="Monthly Charges" min="0" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="Total Charges">Total Charges:</label>
+                    <!--input type="text" id="TotalCharges" name="TotalCharges" placeholder="Total charges" required-->
+                    <input type="number" id="Total Charges" name="Total Charges" step="0.1" placeholder="Total Charges" min="0" required>
+                </div>
+
+                <div class="predict-button">
+                    <button type="submit">Predict</button>
+                    <p>Predict customer loyalty and anticipate potential churn</p>
+                </div>
+
+                <!--div class="predict-button">
+                    <input class="p-b" type="submit" value="Predict" required>
+                </div-->
+
             </form>
+
+            <!--div class="predict-button">
+                <a href="">Predict</a>
+                <p>Predict customer loyalty and anticipate potential churn</p>
+            </div-->  
+            
+
+            <!-- Result section -->
+            {% if results is not none%}
+            <div class="result">
+                <h2>Prediction Result:</h2>
+                <p>{{ results }}</p>
+            </div>
+            {% endif %}
+
+            <!--h2>
+                The prediction result is {{results}}
+            </h2-->
+
         </div>
     </section>
 
