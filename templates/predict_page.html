@@ -29,9 +29,7 @@
             <div class="card">
                 <h3><img src="{{ url_for('static', filename='images/personal info.png') }}" class="icon">Personal Information</h3>
             </div>
-                <!--h3>Personal Information</h3-->
             
-            <!--form action="/predict" method="post" class="predictdata"-->
             <form action="{{ url_for('predict')}}" method="post" class="predictdata">
 
                 <div class="form-row">
@@ -69,14 +67,10 @@
                         <option value="No">No</option>
                     </select>
                 </div>
-            
-            <!--/form-->
 
                 <div class="card">
                     <h3><img src="{{ url_for('static', filename='images/services info.png') }}" class="icon">Services Information</h3>
                 </div>
-
-            <!--form action="predict" method="post" class="predictdata"-->
                 
                 <div class="form-row">
                     <label for="Phone Service">Phone Service:</label>
@@ -166,14 +160,11 @@
                         <option value="No internet service">No internet service</option>
                     </select>
                 </div>
-            <!--/form-->
-
+            
                 <div class="card">
                     <h3><img src="{{ url_for('static', filename='images/billing info.png') }}" class="icon">Billing Information</h3>
                 </div>
-
-            <!--form action="predict" method="post" class="predictdata"-->
-
+            
                 <div class="form-row">
                     <label for="Contract Type">Contract Type:</label>
                     <select id="Contract Type" name="Contract Type" required>
@@ -208,14 +199,14 @@
                     <label for="Tenure (months)">Tenure (months):</label>
                     <select id="Tenure (months)"  name="Tenure (months)" required>
                         <option value="">Select</option>
-                        <option value="1-12">1-12</option>
-                        <option value="13-24">13-24</option>
-                        <option value="25-36">25-36</option>
-                        <option value="37-48">37-48</option>
-                        <option value="49-60">49-60</option>
-                        <option value="61-72">61-72</option>
+                        <option value="1 - 12">1 - 12</option>
+                        <option value="13 - 24">13 - 24</option>
+                        <option value="25 - 36">25 - 36</option>
+                        <option value="37 - 48">37 - 48</option>
+                        <option value="49 - 60">49 - 60</option>
+                        <option value="61 - 72">61 - 72</option>
                     </select>
-                    <!--input type="text" id="Tenure" name="Tenure" placeholder="Tenure in months" required-->
+                    
                 </div>
 
                 <div class="form-row">
@@ -232,13 +223,13 @@
 
                 <div class="predict-button">
                     <button type="submit">Predict</button>
-                    <p>Predict customer loyalty and anticipate potential churn</p>
+                    <p>PREDICT CUSTOMER LOYALTY AND ANTICIPATE POTENTIAL CHURN</p>
                 </div>
 
                 <!--div class="predict-button">
                     <input class="p-b" type="submit" value="Predict" required>
                 </div-->
-
+ 
             </form>
 
             <!--div class="predict-button">
@@ -248,11 +239,12 @@
             
 
             <!-- Result section -->
-            {% if results is not none%}
-            <div class="result">
-                <h2>Prediction Result:</h2>
-                <p>{{ results }}</p>
-            </div>
+            {% if result is not none %}
+                <div class="result">
+                    <h2>Prediction Result :</h2>
+                    <p>{{ result }}</p>
+                    <p>{{ result_text }}</p>
+                </div>
             {% endif %}
 
             <!--h2>
