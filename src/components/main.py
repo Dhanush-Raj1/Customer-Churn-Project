@@ -9,6 +9,7 @@ from src.components.data_ingestion import DataIngestion
 from src.components.data_transformation import DataTransformation
 from src.components.model_trainer1 import ModelTrainer
 
+
 # cleaning the raw data
 data_cleaning = DataCleaning()
 data_cleaning.initiate_data_cleaning()
@@ -18,7 +19,7 @@ data_cleaning.initiate_data_cleaning()
 data_ingestion = DataIngestion()
 train_path, test_path = data_ingestion.initiate_data_ingestion()
 
-
+ 
 # performing data transformation
 data_transformation = DataTransformation()
 train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_path, test_path)
