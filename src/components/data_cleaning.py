@@ -46,7 +46,7 @@ class DataCleaning:
             df['SeniorCitizen'] = df['SeniorCitizen'].astype('object')
             print(df['SeniorCitizen'].dtype)
 
-
+ 
 
             # duplicate records
             dup_rows = df.duplicated().sum()
@@ -108,7 +108,7 @@ class DataCleaning:
             
             logging.info(f"The shape of the cleaned dataframe is: {df_cleaned.shape}")
             
-            
+             
             
             # creating artifacts folder & save the df
             os.makedirs(os.path.dirname(self.data_cleaning_config.cleaned_data_path), exist_ok=True)

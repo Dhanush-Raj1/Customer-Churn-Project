@@ -9,7 +9,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
- 
+  
 
 # Data ingestion configuration class
 @dataclass
@@ -52,7 +52,7 @@ class DataIngestion:
             
             logging.info(f"Shape of train set: {train_set.shape}")
             logging.info(f"Shape of test set: {test_set.shape}")
-            
+             
             
             logging.info("Data ingestion process has been completed.")
             
