@@ -5,6 +5,7 @@ from src.exception_handling import CustomException
 from src.logger import logging
 
 import dill
+import pickle
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
 
@@ -33,6 +34,24 @@ def save_object(file_path, obj):
             
     except Exception as e:
         raise CustomException(e, sys)
+        
+        
+
+    
+def load_object(file_path):
+    """
+    Loads a saved object from the respective file path
+    object: pkl file (saved using dill.dump)
+    """
+    
+    try:
+        with open(file_path, "rb") as file_obj:
+            return dill.load(file_obj)
+        
+        
+    except Exception as e:
+        raise CustomException(e, sys)
+        
         
         
         
@@ -80,22 +99,6 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
     
     
     
-    
-def load_object(file_path):
-    """
-    Loads a saved object from the respective file path
-    object: pkl file (saved using dill.dump)
-    """
-    
-    try:
-        with open(file_path, "rb") as file_obj:
-            return dill.load(file_obj)
-        
-        
-    except Exception as e:
-        raise CustomException(e, sys)
-            
-            
-            
+
             
             
