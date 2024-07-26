@@ -52,9 +52,9 @@
       * Customers with a tenure of within 1 years have equal chances of both churning and staying in the business.
       * Customers with a contract type of month-to-month have left the business more often.
    - Visualizations:
-      - <img src="eda_images/tenure.png" width="500" height="400">
-      - <img src="eda_images/churn.png" width="400" height="340">
-      - <img src="eda_images/charges%20by%20churn.png" width="1000" height="500">
+      - <img src="eda_images/tenure.png" width="500" height="360">
+      - <img src="eda_images/churn.png" width="400" height="380">
+      - <img src="eda_images/charges%20by%20churn.png" width="1000" height="360">
 
 ## 4. Model Building:
    - Used different classification algorithms to train the model.
