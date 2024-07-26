@@ -46,14 +46,16 @@
    - Analyzed and visualized each feature to understand its values and the value counts to determine its overall importance.
    - Some of the major findings:
       * Among the entire customer base around 16% of them are senior citizens.
-      * Customers who are more likely to churn have lesser monthly and total charges.
-      * Senior citizen customer have higher churn rates than that of non senior citizen customers.
-      * The longer a customer stays with the business the lesser the chances of churning.
+      * Customers who are more likely to churn have lower monthly and total charges.
+      * Senior citizen customer have higher churn rates than non senior citizen customers.
+      * The longer a customer stays with the business, the lower the chances of churning.
       * Customers with a tenure of within 1 years have equal chances of both churning and staying in the business.
       * Customers with a contract type of month-to-month have left the business more often.
+   - Visualizations:
+      - <img src="https://github.com/Dhanush-Raj1/Data-Science-Salary-Project/blob/main/eda_images/correlation.png" width="500" height="500">
 
 ## 4. Model Building:
-   - Used different classification algorithms to train the model. I used the following classification algorithms:
+   - Used different classification algorithms to train the model.
       * Logistic Regression
       * Naive Bayes
       * Knn Classifier
@@ -64,7 +66,10 @@
       * Support Vector Classifier
    - Performed hyper parameter tunning using GridSearchCV to optimize and improve the performance models.
    - Evaluated the models with accuracy score and confusion matrix (percision, recall, f1 score) and selected the model with higher accuracy.
-   - Out of all the models Xgboost classifier has the highest accuracy of 81%.
+   - Out of all the algorithms used, Xgboost classifier had the highest accuracy of 81%.
 
 ## 5. Deployment:
-   - 
+   - Developed a Flask web application to deploy the model for real-time predictions.
+   - Built both front-end and back-end components for the web app.
+   - Created a custom website where users can enter customer data and receive predictions from the model.
+   - Deployed the Flask app on local host server for easy access.
