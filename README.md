@@ -53,7 +53,7 @@
       * Customers with a contract type of month-to-month have left the business more often.
    - Visualizations:
       - <img src="eda_images/tenure.png" width="500" height="400">
-      - <img src="eda_images/churn.png" width="500" height="340">
+      - <img src="eda_images/churn.png" width="400" height="340">
       - <img src="eda_images/charges%20by%20churn.png" width="1000" height="500">
 
 ## 4. Model Building:
