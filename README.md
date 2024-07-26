@@ -52,8 +52,7 @@
       * Customers with a tenure of within 1 years have equal chances of both churning and staying in the business.
       * Customers with a contract type of month-to-month have left the business more often.
    - Visualizations:
-   - Distribution of tenure:
-      <img src="eda_images/tenure.png" width="500" height="360">
+   - Distribution of tenure: <img src="eda_images/tenure.png" width="500" height="360">
        
    - Imbalance in churn:
       <img src="eda_images/churn.png" width="400" height="380">
