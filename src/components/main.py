@@ -7,7 +7,7 @@ from src.logger import logging
 from src.components.data_cleaning import DataCleaning
 from src.components.data_ingestion import DataIngestion
 from src.components.data_transformation import DataTransformation
-from src.components.model_trainer1 import ModelTrainer
+from src.components.model_trainer import ModelTrainer
 
 
 # cleaning the raw data
