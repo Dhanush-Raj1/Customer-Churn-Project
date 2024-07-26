@@ -53,12 +53,11 @@
       * Customers with a contract type of month-to-month have left the business more often.
    - Visualizations:
    - Distribution of tenure:
-      - <img src="eda_images/tenure.png" width="500" height="360">
+       <img src="eda_images/tenure.png" width="500" height="360">
    - Imbalance in churn:
-      - <img src="eda_images/churn.png" width="400" height="380">
-      
+       <img src="eda_images/churn.png" width="400" height="380">
    - Monthly and Total Charges by churn:
-      - <img src="eda_images/charges%20by%20churn.png" width="1000" height="360">
+       <img src="eda_images/charges%20by%20churn.png" width="1000" height="360">
 
 ## 4. Model Building:
    - Used different classification algorithms to train the model.
