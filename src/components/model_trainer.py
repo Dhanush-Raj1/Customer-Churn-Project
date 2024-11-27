@@ -29,8 +29,8 @@ class ModelTrainer:
 
     def __init__(self):
         self.model_trainer_config = ModelTrainerConfig()
-
-    def initiate_model_trainer(self, train_array, test_array):
+ 
+    def initiate_model_trainer(self, train_array, test_array):  
         """
         Params: train, test array
         Returns: training the model, saving the best model and returns the accuracy score
@@ -48,20 +48,22 @@ class ModelTrainer:
                        "Decision tree": DecisionTreeClassifier(),
                        "Random forest": RandomForestClassifier(),
                        "Adaboost classifier": AdaBoostClassifier(),
-                       "Xgboost classifier": XGBClassifier(),
+                       "Xgboost classifier": XGBClassifier(),   }
                        #"Catboost classifier": CatBoostClassifier(),
-                       "Support vector classifier": SVC()  }
+                       #"Support vector classifier": SVC()  }
 
             params = {
                 "Logistic regression": [ {'penalty': ['l2'], 'C': [0.01, 0.1, 1, 10, 100, 300],
-                                          'solver': ['liblinear', 'lbfgs', 'saga', 'newton-cholesky']},
+                                          'solver': ['liblinear', 'lbfgs', 'saga', 'newton-cholesky'], 'max_iter': [1000, 2000, 3000]},
+                                        
                                          {'penalty': ['l1'], 'C': [0.01, 0.1, 1, 10, 100, 300],
-                                          'solver': ['liblinear', 'saga']},
+                                          'solver': ['liblinear', 'saga'], 'max_iter': [1000, 2000, 3000]},
+                                         
                                          {'penalty': ['elasticnet'], 'C': [0.01, 0.1, 1, 10, 100, 300],
-                                          'solver': ['saga'], 'l1_ratio': [0.5]} ],
+                                          'solver': ['saga'], 'l1_ratio': [0.5], 'max_iter': [1000, 2000, 3000]}   ],
                 
                 "Naive bayes": {'var_smoothing': [1e-09, 1e-08, 1e-07, 1e-06, 1e-07]},
-                
+                 
                 "Knn classifier": {'n_neighbors': [3, 5, 7, 9, 11, 15, 20, 25, 30, 40, 50],
                                    'weights': ['uniform', 'distance'],
                                    'algorithm': ['brute', 'kd_tree', 'ball_tree']},
@@ -69,8 +71,9 @@ class ModelTrainer:
                 "Decision tree": {'criterion': ['gini', 'entropy', 'log_loss'],
                                   'max_depth': [3, 5, 10, 15, 20, 25, 30, 40, 50],
                                   'min_samples_split': [2, 5, 10],
-                                  'min_samples_leaf': [1, 2, 4],
-                                  'max_features': [None, 'sqrt', 'log2']},
+                                  'min_samples_leaf': [1, 2, 4, 8],
+                                  'max_features': [None, 'sqrt', 'log2'],
+                                  'random_state': [100]},
                 
                 "Random forest": {'n_estimators': [50, 100, 150, 200],
                                   'criterion': ['gini', 'entropy', 'log_logg'],
@@ -87,7 +90,7 @@ class ModelTrainer:
                                        'learning_rate': [0.01, 0.1, 0.2, 0.3, 0.6, 1.0],
                                        'max_depth': [3, 5, 7, 10],
                                        'sub_sample': [0.6, 0.8, 1.0],
-                                       'colsample_bytree': [0.6, 0.8, 1.0]},
+                                       'colsample_bytree': [0.6, 0.8, 1.0]},     }
                 
                 #"Catboost classifier": {'iterations': [500],
                                         #'n_estimators': [100, 200, 300, 400],
@@ -95,12 +98,12 @@ class ModelTrainer:
                                         #'learning_rate': [0.001, 0.05, 0.1],
                                         #'l2_leaf_reg': [1, 3, 5, 7, 9],
                                         #'bagging_temperature': [0, 0.5, 1],
-                                        #'random_strength': [0, 0.5, 1, 1.5, 2]},
+                                        #'random_strength': [0, 0.5, 1, 1.5, 2]},   
                                                                             
-                
-                "Support vector classifier": {'C': [0.1, 1, 10, 100],
-                                              'kernel': ['linear', 'rbf', 'poly', 'sigmoid'],
-                                              'gamma': ['scale', 'auto']}   }
+                 
+                #"Support vector classifier": {'C': [0.1, 1, 10, 100],
+                                              #'kernel': ['linear', 'rbf', 'poly', 'sigmoid'],
+                                              #'gamma': ['scale', 'auto']}   }
                 
 
             model_report = evaluate_models(X_train=X_train, y_train=y_train,
@@ -119,6 +122,8 @@ class ModelTrainer:
 
             save_object(file_path=self.model_trainer_config.model_file_path,
                         obj=best_model)
+            
+            logging.info("Best model has been saved.")
 
             predicted = best_model.predict(X_test)
             accuracy = accuracy_score(y_test, predicted)

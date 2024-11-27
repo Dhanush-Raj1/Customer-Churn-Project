@@ -9,7 +9,7 @@ import numpy as np
 from sklearn.preprocessing import OneHotEncoder, Normalizer, MinMaxScaler, StandardScaler
 from sklearn.impute import SimpleImputer
 from imblearn.combine import SMOTEENN
-from imblearn.over_sampling import KMeansSMOTE
+from imblearn.over_sampling import KMeansSMOTE, SVMSMOTE, SMOTE
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
@@ -33,7 +33,7 @@ class DataTransformation:
     Performs train, test split & Saves it in artifacts folder 
     Preprocess the train, test sets and returns them as an array 
     """ 
-    
+
     # Initiate the configuration object
     def __init__(self):
         self.data_transformation_config = DataTransformationConfig()
@@ -52,10 +52,8 @@ class DataTransformation:
                         'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
                         'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod']
             
-            num_pipeline = Pipeline(steps = [('imputer', SimpleImputer(strategy='median')),
-                                             #('scaler', MinMaxScaler()),
-                                             ('scaler', StandardScaler() )])
-            
+            num_pipeline = Pipeline(steps = [('imputer', SimpleImputer(strategy='median')) ])
+
             cat_pipeline = Pipeline(steps = [('imputer', SimpleImputer(strategy='most_frequent')),
                                              ('encoder', OneHotEncoder() )])
             
@@ -92,8 +90,6 @@ class DataTransformation:
             
             
             target_column_name = 'Churn'
-            num_cols = ['MonthlyCharges', 'TotalCharges']
-            
             
             
             # train set
@@ -107,26 +103,31 @@ class DataTransformation:
     
             
             logging.info("Preprocessing train and test sets has been started.")
+            logging.info("Trying without scaling the data and using smote and test size 30%.")
             X_train_arr = preprocessing_obj.fit_transform(X_train)
             X_test_arr = preprocessing_obj.transform(X_test)
+            logging.info("Preprocessing has been completed.")
             
             
             
             # handling imbalance 
             logging.info("Handling imbalance.")
-            #smote_enn = SMOTEENN(random_state=42)
-            kmeans_smote = KMeansSMOTE(sampling_strategy='minority', k_neighbors=5, random_state=42)
-            X_train_resampled, y_train_resampled = kmeans_smote.fit_resample(X_train_arr, y_train)
+            smote_enn = SMOTEENN(sampling_strategy=0.5, random_state=42)
+            kmeans_smote = KMeansSMOTE(sampling_strategy=0.5, k_neighbors=5, random_state=42, cluster_balance_threshold=0.4)
+            svm_smote = SVMSMOTE(sampling_strategy=0.5, k_neighbors=5, m_neighbors=7)
+            smote = SMOTE(sampling_strategy=0.5)
+            
+            X_train_resampled, y_train_resampled = smote.fit_resample(X_train_arr, y_train)
             
             
             #X_train_df = pd.DataFrame(X_train_resampled, columns=X_train.columns)
             #y_train_df = pd.DataFrame(y_train_resampled, columns=y_train.columns)
             
-            
-            logging.info(f"Shape of X_train before SMOTEENN:{X_train_arr.shape}")
-            logging.info(f"Shape of X_train after SMOTEENN: {X_train_resampled.shape}")
-            logging.info(f"Shape of y_train before SMOTEEN: {y_train.shape}")
-            logging.info(f"Shape of y_train after SMOTEENN: {y_train_resampled.shape}")
+
+            logging.info(f"Shape of X_train before handling imbalance:{X_train_arr.shape}")
+            logging.info(f"Shape of X_train after handling imbalance: {X_train_resampled.shape}")
+            logging.info(f"Shape of y_train before handling imbalance: {y_train.shape}")
+            logging.info(f"Shape of y_train after handling imbalance: {y_train_resampled.shape}")
             
             logging.info(f"Distribution of Churn before SMOTEENN: {y_train.value_counts()}")
             logging.info(f"Distribution of Churn after SMOTEENN: {y_train_resampled.value_counts()}")
@@ -140,7 +141,7 @@ class DataTransformation:
             train_arr = np.c_[X_train_resampled, y_train_resampled]
             test_arr = np.c_[X_test_arr, np.array(y_test)]
             
-            
+             
             
             # saving the preprocessing object 
             save_object(file_path = self.data_transformation_config.preprocessor_obj_file_path,
@@ -150,6 +151,7 @@ class DataTransformation:
 
             logging.info("Preprocessing object has been saved.")
             logging.info("Data transformation process has been completed.")
+            logging.info(f"Transformed data: {X_train_resampled}")
             
             return(train_arr, 
                    test_arr,
@@ -160,7 +162,7 @@ class DataTransformation:
             raise CustomException(e,sys)
             
                                              
-                                             
+                                              
                                     
             
              

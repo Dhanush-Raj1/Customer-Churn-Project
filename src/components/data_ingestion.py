@@ -3,7 +3,7 @@ import sys
 from src.exception_handling import CustomException
 from src.logger import logging
 from src.components.data_transformation import DataTransformation
-from src.components.model_trainer1 import ModelTrainer
+from src.components.model_trainer import ModelTrainer
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -43,8 +43,8 @@ class DataIngestion:
             logging.info("Data ingestion process has been started.")
             df = pd.read_csv('artifacts/data_cleaned.csv')
             logging.info("Cleaned data has been loaded.")
-            
-            
+             
+             
             logging.info("Train and test split has been initiated.")
             train_set, test_set = train_test_split(df, test_size=0.3, random_state=42)
             train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
