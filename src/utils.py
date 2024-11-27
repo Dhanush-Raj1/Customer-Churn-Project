@@ -5,7 +5,6 @@ from src.exception_handling import CustomException
 from src.logger import logging
 
 import dill
-import pickle
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
 
@@ -13,7 +12,7 @@ from sklearn.model_selection import GridSearchCV
 
 def save_object(file_path, obj): 
     """
-    Save a python object to a file using dill
+    Save a python object to a file using dill   
     
     file_path : The path where the object should be saved
     obj : The python object to be saved
@@ -63,14 +62,14 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
     """
     
     try:
-        
+         
         report = {} 
         logging.info("Starting model evaluation process.")
         
         for model_name, model in models.items():
             param = params[model_name]
             
-            gs = GridSearchCV(model, param, cv=8)
+            gs = GridSearchCV(model, param, cv=5)
             logging.info(f"Starting gridsearch for {model_name}")
             gs.fit(X_train, y_train)
             
