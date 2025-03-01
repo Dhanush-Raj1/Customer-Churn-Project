@@ -105,10 +105,14 @@ The Product Search Agent is an AI-powered web application that allows users to s
 # 📸 Screenshots  
 ### Home Page  
 <img src="readme_images/home_page.png" width="500" height="500">
+
 <br>
+
 ### Predict Page
 <img src="readme_images/home_page.png" width="500" height="500">
+
 <br>
+
 ### Results 
 <img src="readme_images/home_page.png" width="500" height="500">
 
