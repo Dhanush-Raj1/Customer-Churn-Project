@@ -12,13 +12,13 @@
 
 <br>
 
-# 📌 Overview
+# 📌 Customer Churn Predictor
 - Customer Churn Rate (also known as attrition rate) refers to the percentage of customers who stop doing business with a company over a given period. It is a key metric used to measure customer retention and business performance.
 - The customer churn project aims at predicting the churn rate of a business in advance using machine learning algorithms. By analyzing historical customer data and various influencing factors, this model will help businesses take preventive actions to reduce churn. 
 
 <br>
 
-# 🧱 About the project
+# 🧱 Project workflow 
    - Developed a machine learning model to predict whether a customer of a telecommunication company will churn.
    - Followed a modular structure for the entire project. 
    - Utilized data of over 7000 records to train and develop the model.
@@ -104,19 +104,15 @@
 
 <br>
 
-# 📸 Screenshots  
-### Home Page  
-<img src="readme_images/home_page.PNG" width="1000" height="500">
-
-<br>
-
-### Predict Page
-<img src="readme_images/predict_page.PNG" width="1000" height="500">
-
-<br>
-
-### Results 
-<img src="readme_images/result.PNG" width="1000" height="500">
+# 🛠 Tech Stack
+| Technology | Description |
+|------------|-------------|
+| **Python** | Programming language used  |
+| **Flask** | Web framework for UI and API integration |
+| **HTML & CSS** | Frontend design and styling |
+| **Pandas** | Cleaning and preprocessing the data |
+| **Numpy** | Performing numerical operations |
+| **Matplotlib** | Visualization of the data |
 
 <br>
 
@@ -194,16 +190,34 @@ The app will be available at: **http://127.0.0.1:5000/**
 
 <br>
 
+# 📸 Screenshots  
+### 🟠 Home Page  
+<img src="readme_images/home_page.PNG" width="1000" height="500">
+
+<br>
+
+### 🔵 Predict Page
+<img src="readme_images/predict_page.PNG" width="1000" height="500">
+
+<br>
+
+### 🟢 Results 
+<img src="readme_images/result.PNG" width="1000" height="500">
+
+<br>
 
 # 🎯 Future Enhancements
-- Increased 
-- Integration with payment gateways
-- Multi-language support
+✅ Improved accuracy of the model with advanced fine tunning  
+✅ Real-Time Prediction System  
+✅ Automated Retraining Pipeline
+✅ Improve UI with a more interactive design.  
+✅ Customer Retention Strategy Recommender.  
+✅ Anomaly Detection for Unexpected Churn
 
 <br>
 
 # 🤝 Contributing  
-💡 Have an idea? Feel free to contribute or open an issue and pull requests!  
+💡 Contributions, issues, and pull requests are welcome! Feel free to open an issue or submit a PR to improve this project. 🚀 
 
 📄 License
 This project is licensed under the MIT License – see the LICENSE file for details.
