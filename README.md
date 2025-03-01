@@ -209,8 +209,8 @@ The app will be available at: **http://127.0.0.1:5000/**
 # 🎯 Future Enhancements
 ✅ Improved accuracy of the model with advanced fine tunning  
 ✅ Real-Time Prediction System  
-✅ Automated Retraining Pipeline
-✅ Improve UI with a more interactive design.  
+✅ Automated Retraining Pipeline  
+✅ Improve UI with a more interactive design.    
 ✅ Customer Retention Strategy Recommender.  
 ✅ Anomaly Detection for Unexpected Churn
 
@@ -219,5 +219,5 @@ The app will be available at: **http://127.0.0.1:5000/**
 # 🤝 Contributing  
 💡 Contributions, issues, and pull requests are welcome! Feel free to open an issue or submit a PR to improve this project. 🚀 
 
-📄 License
-This project is licensed under the MIT License – see the LICENSE file for details.
+# 📄 License  
+This project is licensed under the MIT License – see the LICENSE file for details.  
