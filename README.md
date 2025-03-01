@@ -190,6 +190,14 @@ The app will be available at: **http://127.0.0.1:5000/**
 
 <br>
 
+# 🌐 Usage Guide    
+1️⃣ Open the web app in your browser.    
+2️⃣ Click the predict on the home page of the web app.  
+3️⃣ Enter the customer details in the respective dropdowns.   
+4️⃣ Click the predit button and the predicted results will appear.  
+
+<br>
+
 # 📸 Screenshots  
 ### 🟠 Home Page  
 <img src="readme_images/home_page.PNG" width="1000" height="500">
