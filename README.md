@@ -72,13 +72,13 @@ The Product Search Agent is an AI-powered web application that allows users to s
       * Customers with a contract type of month-to-month have left the business more often.
    - Visualizations:
    - Distribution of tenure:
-      - <img src="eda_images/tenure.png" width="500" height="360">
+      - <img src="readme_images/tenure.png" width="500" height="360">
        
    - Imbalance in churn:
-      - <img src="eda_images/churn.png" width="400" height="380">
+      - <img src="readme_images/churn.png" width="400" height="380">
        
    - Monthly and Total Charges by churn:
-      - <img src="eda_images/charges%20by%20churn.png" width="1000" height="360">
+      - <img src="readme_images/charges%20by%20churn.png" width="1000" height="360">
 
 ## 4. Model Building:
    - Used different classification algorithms to train the model.
@@ -102,20 +102,15 @@ The Product Search Agent is an AI-powered web application that allows users to s
 
 <br>
 
-# 📸 Screenshots
-
-- Home Page
-<img src="readme_images/home_page.png" width="500" height="500>
-
+# 📸 Screenshots  
+### Home Page  
+<img src="readme_images/home_page.png" width="500" height="500">
 <br>
-
-- Predict Page
-<img src="readme_images/home_page.png" width="500" height="500>
-   
+### Predict Page
+<img src="readme_images/home_page.png" width="500" height="500">
 <br>
-
-- Results 
-<img src="readme_images/home_page.png" width="500" height="500>
+### Results 
+<img src="readme_images/home_page.png" width="500" height="500">
 
 <br>
 
