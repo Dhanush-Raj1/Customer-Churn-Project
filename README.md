@@ -8,7 +8,7 @@
    <img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=black&labelColor=white&color=blue" />
    <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=black&labelColor=white&color=yellow" />
 </p>
-<h3 align="center"> End to End Data Science Project: "Predicing Customer Churn in a Telecommunication Company"</h3>
+<h3 align="center"> End to End Machine Learning Project: "Predicing Customer Churn in a Telecommunication Company"</h3>
 
 <br>
 
