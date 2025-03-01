@@ -13,11 +13,12 @@
 <br>
 
 # 📌 Overview
-The Product Search Agent is an AI-powered web application that allows users to search for product details, including price comparisons, from multiple online sources. It leverages various agentic tools and Large Language Models (LLMs) to fetch, analyze, and present product information.
+- Customer Churn Rate (also known as attrition rate) refers to the percentage of customers who stop doing business with a company over a given period. It is a key metric used to measure customer retention and business performance.
+- The customer churn project aims at predicting the churn rate of a business in advance using machine learning algorithms. By analyzing historical customer data and various influencing factors, this model will help businesses take preventive actions to reduce churn. 
 
 <br>
 
-# 🧱 About the project:
+# 🧱 About the project
    - Developed a machine learning model to predict whether a customer of a telecommunication company will churn.
    - Followed a modular structure for the entire project. 
    - Utilized data of over 7000 records to train and develop the model.
@@ -28,6 +29,7 @@ The Product Search Agent is an AI-powered web application that allows users to s
 
 <br>
 
+# 📌 Project Overview
 ## 1. Data Collection:
    - Utilized the company's historical data of over 7000 records which includes information such as demographic details, services subscribed and account information.
    - For each customer the following information is available:
