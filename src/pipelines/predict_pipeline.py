@@ -97,8 +97,8 @@ class Predict:
     def predict_data(self, df):
         try:
             
-            base_path = r"F:\\Data Science\\Customer-Churn-Project"
-            model_path = os.path.join(base_path, "artifacts", "model.pkl")
+            base_path = r"F:\\Data Science\\Projects\\Customer-Churn-Project"
+            model_path = r"F:\\Data Science\\Projects\\Customer-Churn-Project\\artifacts\\model.pkl"
             preprocessor_path = os.path.join(base_path, "artifacts", "preprocessor.pkl")
             
             logging.info("Attempting to load model object.")
