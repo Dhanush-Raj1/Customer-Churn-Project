@@ -18,7 +18,7 @@
 
 <br>
 
-# 🧱 Project workflow 
+# 🧱 Project Overview 
    - Developed a machine learning model to predict whether a customer of a telecommunication company will churn.
    - Followed a modular structure for the entire project. 
    - Utilized data of over 7000 records to train and develop the model.
@@ -29,7 +29,7 @@
 
 <br>
 
-# 📌 Project Overview
+# 📌 Project Workflow
 ## 1. Data Collection:
    - Utilized the company's historical data of over 7000 records which includes information such as demographic details, services subscribed and account information.
    - For each customer the following information is available:
