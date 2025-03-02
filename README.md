@@ -210,7 +210,7 @@ The app will be available at: **http://127.0.0.1:5000/**
 <br>
 
 ### 🟢 Results 
-<img src="readme_images/result.PNG" width="1000" height="500">
+<img src="readme_images/result.PNG" width="900" height="500">
 
 <br>
 
