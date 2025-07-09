@@ -75,7 +75,7 @@ jobs:
 
   deploy-to-eks:                                                                                    
     runs-on: ubuntu-latest
-    needs: build-and-push-ecr 
+    needs: build-and-push-to-ecr 
 
     steps:
       - name: Checkout Repository
