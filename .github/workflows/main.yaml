@@ -1,0 +1,136 @@
+name: CI/CD to AWS EKS
+
+on:
+  workflow_dispatch:
+
+# Permissions required for OIDC authentication and repository access
+permissions:
+  id-token: write        # Required for fetching the OIDC for AWS authentication
+  contents: read         # Required for actions/checkout to clone the repository
+
+env:
+  AWS_REGION: ap-south-1           
+  ECR_REPOSITORY: github-actions-c-c
+  EKS_CLUSTER_NAME: customer-churn-cluster-v2
+  KUBECTL_VERSION: v1.28.0
+  K8S_DEPLOYMENT_FILE: k8s/deployment.yaml 
+  K8S_SERVICE_FILE: k8s/service.yaml     
+
+jobs:
+
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9.19'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run test
+        run: |
+          pytest
+
+
+  build-and-push-ecr:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    outputs:
+      image_uri: ${{ steps.build-image.outputs.image }}         # Expose the image URI as a job output
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4 
+
+      - name: Configure AWS credentials 
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}      # ARN of the IAM Role for GitHub Actions
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr 
+        uses: aws-actions/amazon-ecr-login@v1 
+
+      - name: Build, tag, and push image to ECR
+        id: build-image 
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} # ECR registry URI from login step
+          IMAGE_TAG: ${{ github.sha }}                          # Git commit SHA as image tag 
+        run: |
+          echo "Building Docker image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          echo "Pushing Docker image to ECR..."
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+          # Set output for the full image URI, to be used by the EKS deployment job
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          echo "Image pushed: ${{ steps.build-image.outputs.image }}"
+
+
+  deploy-to-eks:                                                                                    
+    runs-on: ubuntu-latest
+    needs: build-and-push-ecr 
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials 
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v2.0 
+        with:
+          version: ${{ env.KUBECTL_VERSION }}
+
+      - name: Update kubeconfig 
+        run: |
+          echo "Updating kubeconfig for EKS cluster: ${{ env.EKS_CLUSTER_NAME }}"
+          aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }} --region ${{ env.AWS_REGION }}
+          echo "Kubeconfig updated successfully."
+
+          kubectl cluster-info
+
+      - name: Replace image deployment.yaml
+        # Retrieve the image output from the previous job
+        env:
+          NEW_IMAGE_URI: ${{ needs.build-and-push-ecr.outputs.image_uri }}
+        run: |
+          echo "Updating image in ${K8S_DEPLOYMENT_FILE} to: ${NEW_IMAGE_URI}"
+          sed -i "s|IMAGE_PLACEHOLDER|${NEW_IMAGE_URI}|g" ${{ env.K8S_DEPLOYMENT_FILE }}
+          # For debugging: print the modified manifest
+          cat ${{ env.K8S_DEPLOYMENT_FILE }} 
+
+      - name: Deploy to EKS
+        run: |
+          echo "Applying Kubernetes manifests to EKS..."
+          kubectl apply -f ${{ env.K8S_DEPLOYMENT_FILE }}
+          kubectl apply -f ${{ env.K8S_SERVICE_FILE }}
+          echo "Deployment to EKS initiated successfully."
+
+      - name: Get service and pods info
+        run: |
+          kubectl get services customer-churn-service
+          kubectl get pods -l app=customer-churn
+
+      - name: Debug if deployment fails
+        if: failure()
+        run: |
+          echo "Deployment failed. Debugging..."
+          kubectl get pods -l app=customer-churn || true
+          kubectl describe pods -l app=customer-churn || true
+          POD_NAME=$(kubectl get pods -l app=customer-churn -o jsonpath='{.items[0].metadata.name}' || echo "")
+          if [ ! -z "$POD_NAME" ]; then
+            echo "Pod logs:"
+            kubectl logs $POD_NAME
+          fi
