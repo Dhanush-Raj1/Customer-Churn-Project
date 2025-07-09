@@ -16,7 +16,7 @@ env:
 
 jobs:
 
-  test-code:
+  test-application:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -37,7 +37,7 @@ jobs:
 
 
   build-and-push-to-ecr:
-    needs: build-and-test
+    needs: test-application
     runs-on: ubuntu-latest
     outputs:
       image_uri: ${{ steps.build-image.outputs.image }}         # Expose the image URI as a job output
