@@ -119,7 +119,19 @@ Customer churn represents the percentage of users discontinuing service within a
 - **Cloud Deployment**: Kubernetes-managed scalable infrastructure on AWS EKS
 - **Modular Codebase**: Production-ready Python implementation
 
-<br> 
+<br>
+
+### Deployment Architecture
+```mermaid
+graph LR
+A[Code Commit] --> B[GitHub Actions]
+B --> C[Build Docker Image]
+C --> D[Push to AWS ECR]
+D --> E[Deploy to EKS]
+E --> F[Production API]
+```
+
+<br>
 
 # 🛠 Tech Stack
 | Technology | Description |
@@ -135,18 +147,6 @@ Customer churn represents the percentage of users discontinuing service within a
 | **Amazon ECR** | Docker image registry for container storage |
 | **Amazon EKS** | Managed Kubernetes service for production deployment |
 | **Kubernetes** | Orchestration platform for scalable deployment |
-
-<br>
-
-### Deployment Architecture
-```mermaid
-graph LR
-A[Code Commit] --> B[GitHub Actions]
-B --> C[Build Docker Image]
-C --> D[Push to AWS ECR]
-D --> E[Deploy to EKS]
-E --> F[Production API]
-```
 
 <br>
 
