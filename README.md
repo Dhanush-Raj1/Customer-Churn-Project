@@ -121,7 +121,7 @@ Customer churn represents the percentage of users discontinuing service within a
 
 <br>
 
-### Deployment Architecture
+## 🌐 Deployment Architecture
 ```mermaid
 graph LR
 A[Code Commit/trigger] --> B[GitHub Actions]
