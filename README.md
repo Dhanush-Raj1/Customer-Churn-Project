@@ -26,6 +26,7 @@
    - Performed feature transformation, scaled the numerical features and handled imbalance in the dataset.
    - Trained the model using various ML algorithms and selected the best one with higher accuracy.
    - Deployed the model using a Flask web application for real-time predictions.
+   -  Integrated **CI/CD automation** using **GitHub Actions** to build, test, containerize, and deploy the application to **AWS EKS (Elastic Kubernetes Service)** on every code update.
 
 <br>
 
@@ -102,6 +103,15 @@
    - Created a custom website where users can enter customer data and receive predictions from the model.
    - Deployed the Flask app on local host server for easy access.
 
+## 6. CI/CD Automation with GitHub Actions & AWS EKS:
+   - Implemented an end-to-end continuous integration and deployment pipeline using **GitHub Actions**.
+   - The pipeline performs the following steps:
+      * Runs tests (unit test) on our web application using **pytest** to ensure the application is working as expected.
+      * Builds a Docker image of the application and pushes it to **Amazon Elastic Container Registry (ECR)**.
+      * Updates the Kubernetes manifests with the latest image and deploys the application to **Amazon EKS**.
+      * Verifies deployment health by checking pod and service status.
+
+
 <br>
 
 # 🛠 Tech Stack
@@ -113,50 +123,74 @@
 | **Pandas** | Cleaning and preprocessing the data |
 | **Numpy** | Performing numerical operations |
 | **Matplotlib** | Visualization of the data |
+| **GitHub Actions** | Automates build, test, and deployment pipelines |
+| **Docker** | Containerization of the application |
+| **Amazon ECR** | Docker image registry for container storage |
+| **Amazon EKS** | Managed Kubernetes service for production deployment |
+| **Kubernetes** | Orchestration platform for scalable deployment |
 
 <br>
 
 # 📂 Project Structure
 ```
 /📂Customer-Churn-Project
-│── /📂artifacts                     # Csv and pickel files 
+│── /📂.github                        # GitHub Actions CI/CD workflow
+│   └── /📂workflows
+│       └── main.yaml
+│
+│── /📂k8s                            # Kubernetes deployment manifests
+│   ├── deployment.yaml
+│   └── service.yaml
+│
+│── /📂artifacts                     # Model artifacts and intermediate data
 │   ├── data_cleaned.csv
 │   ├── test.csv
 │   ├── train.csv
 │   ├── model.pkl
-│   ├── preprocessor.pkl         
-│── /📂Data
-│   ├── data.csv                      # Raw data 
-|   ├── data_eda.csv                  # Cleaned, preprocessed data
-│── /📂eda_images                     # Images of exploratory analysis
+│   └── preprocessor.pkl
+│
+│── /📂data                          # Raw and EDA-processed data
+│   ├── data.csv
+│   └── data_eda.csv
+│
+│── /📂eda_images                    # Visualizations for EDA
 │   ├── tenure.png
-|   ├── churn.png
-|   ├──charges by churn.png
-│── /📂notebook                       # Research ipynb notebook
-│── /📂src                            # Source files (core files of the project)
-|   ├──exception_handling.py           # custom exception handling
-|   ├──logger.py                       # Logging messages
-|   ├──utils.py                        # Helper, utilities functions
-|   │── /📂components                 # Main components files    
-|   |   │── data_cleaning.py         
-|   |   │── data_ingestion.py
-|   |   │── data_transformation.py
-|   │── /📂pipelines                    # Pipeline files
-|   |   │── predict_pipeline.py
-|   |   │── train_pipeline.py
-│── /📂static                         # Static folder
-|   │── /📂css                        # Css files 
-|   |   │── hp_style.css              # Home page styles
-|   |   │── pp_style.css              # Predict page styles
-|   │── /📂images                     # Website Images
-│── /📂templates                      # Templates (html files)
-|   │── /home_page.html
-|   │── /predict_page.html
-│── .gitignore
-│── README.md
-│── app.py                            # Flask backend
-│── requirements.txt                  # Python dependencies
-│── setup.py                          # Setup
+│   ├── churn.png
+│   └── charges by churn.png
+│
+│── /📂notebook                      # Jupyter notebooks for experimentation
+│
+│── /📂src                           # Source code (modular ML pipeline)
+│   ├── exception_handling.py
+│   ├── logger.py
+│   ├── utils.py
+│   ├── /📂components                # Individual pipeline components
+│   │   ├── data_cleaning.py
+│   │   ├── data_ingestion.py
+│   │   └── data_transformation.py
+│   └── /📂pipelines                 # Training and prediction pipelines
+│       ├── predict_pipeline.py
+│       └── train_pipeline.py
+│
+│── /📂static                        # Static assets for the web app
+│   ├── /📂css
+│   │   ├── hp_style.css
+│   │   └── pp_style.css
+│   └── /📂images
+│
+│── /📂templates                     # HTML templates for the Flask frontend
+│   ├── home_page.html
+│   └── predict_page.html
+│
+│── .dockerignore                    # Ignore rules for Docker build
+│── Dockerfile                       # Docker image definition
+│── test_app.py                      # Unit tests for app functionality
+│── .gitignore                       # Git ignore rules
+│── README.md                        # Project documentation
+│── app.py                           # Flask backend app
+│── requirements.txt                 # Python dependency list
+│── setup.py                         # Setup script for packaging
+
 ```
 
 <br>
