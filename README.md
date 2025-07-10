@@ -137,6 +137,16 @@ Customer churn represents the percentage of users discontinuing service within a
 | **Kubernetes** | Orchestration platform for scalable deployment |
 
 <br>
+### Deployment Architecture
+```mermaid
+graph LR
+A[Code Commit] --> B[GitHub Actions]
+B --> C[Build Docker Image]
+C --> D[Push to AWS ECR]
+D --> E[Deploy to EKS]
+E --> F[Production API]
+
+<br>
 
 # 📂 Project Structure
 ```
