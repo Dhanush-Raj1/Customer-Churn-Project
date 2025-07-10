@@ -8,20 +8,12 @@
    <img src="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=HTML5&logoColor=black&labelColor=white&color=brightgreen" />
    <img src="https://img.shields.io/badge/CSS-663399?style=for-the-badge&logo=CSS&logoColor=black&labelColor=white&color=fuchsia" />
 </p>
-<p align="center">
-   <img src="https://img.shields.io/badge/Python-3.9-blue?style=flat-square&logo=python" />
-   <img src="https://img.shields.io/badge/Flask-Web%20Framework-green?style=flat-square&logo=flask" />
-   <img src="https://img.shields.io/badge/AWS-EKS-orange?style=flat-square&logo=amazon-aws" />
-   <img src="https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-blue?style=flat-square&logo=github-actions" />
-   <img src="https://img.shields.io/badge/ML-Scikit%20Learn-red?style=flat-square&logo=scikit-learn" />
-</p>
 <h3 align="center"> End to End MLOps Data Science Project: Predicting Customer Churn in a Telecom Company</h3>
 
 <br>
 
-# 📌 Churn Predictor
-- Customer Churn Rate (also known as attrition rate) refers to the percentage of customers who stop doing business with a company over a given period. It is a key metric used to measure customer retention and business performance.
-- The customer churn project aims at predicting the churn rate of a business in advance using machine learning algorithms. By analyzing historical customer data and various influencing factors, this model will help businesses take preventive actions to reduce churn. 
+# 📌 Churn Predictor  
+Customer churn represents the percentage of users discontinuing service within a given period. This project builds a machine learning pipeline to **predict customer churn** in a telecom business using historical data and deploys the model as a **Flask web app** with **CI/CD integration** using **GitHub Actions** and **AWS EKS** for scalable production.
 
 <br>
 
@@ -118,8 +110,16 @@
       * Updates the Kubernetes manifests with the latest image and deploys the application to **Amazon EKS**.
       * Verifies deployment health by checking pod and service status.
 
-
 <br>
+
+## 🚀 Key Features
+- **ML Pipeline**: Data preprocessing, feature engineering, and XGBoost modeling
+- **Web Interface**: Flask-based prediction interface
+- **CI/CD Automation**: GitHub Actions pipeline for testing, Dockerization, and deployment
+- **Cloud Deployment**: Kubernetes-managed scalable infrastructure on AWS EKS
+- **Modular Codebase**: Production-ready Python implementation
+
+<br> 
 
 # 🛠 Tech Stack
 | Technology | Description |
@@ -143,51 +143,28 @@
 /📂Customer-Churn-Project
 │── /📂.github                        # GitHub Actions CI/CD workflow
 │   └── /📂workflows
-│       └── main.yaml
 │
 │── /📂k8s                            # Kubernetes deployment manifests
 │   ├── deployment.yaml
 │   └── service.yaml
 │
 │── /📂artifacts                     # Model artifacts and intermediate data
-│   ├── data_cleaned.csv
-│   ├── test.csv
-│   ├── train.csv
-│   ├── model.pkl
-│   └── preprocessor.pkl
 │
 │── /📂data                          # Raw and EDA-processed data
-│   ├── data.csv
-│   └── data_eda.csv
 │
 │── /📂eda_images                    # Visualizations for EDA
-│   ├── tenure.png
-│   ├── churn.png
-│   └── charges by churn.png
 │
 │── /📂notebook                      # Jupyter notebooks for experimentation
 │
 │── /📂src                           # Source code (modular ML pipeline)
-│   ├── exception_handling.py
-│   ├── logger.py
-│   ├── utils.py
 │   ├── /📂components                # Individual pipeline components
-│   │   ├── data_cleaning.py
-│   │   ├── data_ingestion.py
-│   │   └── data_transformation.py
 │   └── /📂pipelines                 # Training and prediction pipelines
-│       ├── predict_pipeline.py
-│       └── train_pipeline.py
 │
 │── /📂static                        # Static assets for the web app
 │   ├── /📂css
-│   │   ├── hp_style.css
-│   │   └── pp_style.css
 │   └── /📂images
 │
 │── /📂templates                     # HTML templates for the Flask frontend
-│   ├── home_page.html
-│   └── predict_page.html
 │
 │── .dockerignore                    # Ignore rules for Docker build
 │── Dockerfile                       # Docker image definition
