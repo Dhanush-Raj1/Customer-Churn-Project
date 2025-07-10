@@ -261,5 +261,7 @@ The app will be available at: **http://127.0.0.1:5000/**
 # 🤝 Contributing  
 💡 Contributions, issues, and pull requests are welcome! Feel free to open an issue or submit a PR to improve this project. 🚀 
 
+<br>
+
 # 📄 License  
 This project is licensed under the MIT License – [LICENSE](LICENSE)
