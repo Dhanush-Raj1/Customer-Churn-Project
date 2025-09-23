@@ -9,6 +9,7 @@
    <img src="https://img.shields.io/badge/CSS-663399?style=for-the-badge&logo=CSS&logoColor=black&labelColor=white&color=fuchsia" />
 </p>
 <h3 align="center"> End to End MLOps Data Science Project: Predicting Customer Churn in a Telecom Company</h3>
+<h3 align="center"> Deployed to AWS EKS with Github Actions CI/CD </h3>
 
 <br>
 
