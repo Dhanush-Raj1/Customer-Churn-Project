@@ -11,6 +11,9 @@ scikit-learn==1.4.2
 dill==0.3.8
 flask==3.0.3
 
+# for render deployment 
+gunicorn
+
 
 # The following line ensures that the setup.py file is executed, which is necessary for package setup in editable mode.
 # -e. should be used only when executing 'pip install -r requirements.txt' for the first time only 

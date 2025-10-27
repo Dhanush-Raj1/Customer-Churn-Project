@@ -60,7 +60,7 @@ jobs:
         id: build-image 
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} # ECR registry URI from login step
-          ECR_REPOSITORY: github-actions-ci-cd
+          ECR_REPOSITORY: github-actions/ci-cd
           IMAGE_TAG: ${{ github.sha }}                          # Git commit SHA as image tag 
         run: |
           echo "Building Docker image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
