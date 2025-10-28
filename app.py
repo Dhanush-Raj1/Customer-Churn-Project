@@ -71,7 +71,10 @@ def predict():
     
 
 if __name__ == "__main__":
-    app.run(debug=True, use_reloader=False) #host="0.0.0.0"
+    app.run(host='0.0.0.0', port=8000, debug=False, use_reloader=False)     
     
+    # host='0.0.0.0' is for aws eks, to make the app public 
+    # port=8000 to match the port in deployment.yaml and dockerfile
+    # debug=False for production debug mode can cause issues
         
         
