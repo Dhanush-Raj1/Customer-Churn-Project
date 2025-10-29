@@ -135,7 +135,6 @@ class Predict:
             predicted = model.predict(df_transformed)
             logging.info("Prediction has been completed.")
             
-             
             return predicted
         
         except Exception as e:
