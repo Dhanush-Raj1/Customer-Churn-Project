@@ -3,11 +3,8 @@ from src.pipelines.predict_pipeline import Predict, NewData
 
 from flask import Flask, request, render_template
 
-
-
 application = Flask(__name__)
 app = application
-
 
 # route for home page   
 @app.route('/')
@@ -75,6 +72,7 @@ if __name__ == "__main__":
     
     # host='0.0.0.0' is for aws eks, to make the app public 
     # port=8000 to match the port in deployment.yaml and dockerfile
-    # debug=False for production debug mode can cause issues
+    # debug=False for production debug=True mode can cause issues
+    # when deployed in eks the above app.run() command is ignored as gunicorn is used (in dockerfile) to run the app
         
         
