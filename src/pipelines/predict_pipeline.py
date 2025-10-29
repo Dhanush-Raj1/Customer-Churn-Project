@@ -3,8 +3,8 @@ import sys
 from src.exception_handling import CustomException
 from src.logger import logging
 from src.utils import load_object
-
 import pandas as pd
+
 
 class NewData:
     """
@@ -97,8 +97,26 @@ class Predict:
     def predict_data(self, df):
         try:
             
-            base_path = r"F:\\Data Science\\Projects\\3.Customer-Churn-Project"
-            model_path = r"F:\\Data Science\\Projects\\3.Customer-Churn-Project\\artifacts\\model.pkl"
+            # base_path = r"F:\\Data Science\\Projects\\3.Customer-Churn-Project"
+            # model_path = r"F:\\Data Science\\Projects\\3.Customer-Churn-Project\\artifacts\\model.pkl"
+            # preprocessor_path = os.path.join(base_path, "artifacts", "preprocessor.pkl")
+
+            # works for both local and cloud environment (eks cluster)
+            base_path = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
+            # how it works locally, 
+            # __file__ = (current file) F:\Data Science\Projects\3.Customer-Churn-Project\src\pipelines\predict_pipeline.py
+            # os.path.dirname(__file__) = F:\Data Science\Projects\3.Customer-Churn-Project\src\pipelines
+            # os.path.dirname(os.path.dirname(__file__)) = F:\Data Science\Projects\3.Customer-Churn-Project\src
+            # os.path.dirname(os.path.dirname(os.path.dirname(__file__))) = F:\Data Science\Projects\3.Customer-Churn-Project ✅
+            # Final path: F:\Data Science\Projects\3.Customer-Churn-Project\artifacts\model.pkl
+
+            # how it works in cloud, 
+            # __file__ = /app/src/pipelines/predict_pipeline.py
+            # rest same logic 
+            # Final path: /app/artifacts/model.pkl
+
+            model_path = os.path.join(base_path, "artifacts", "model.pkl")
             preprocessor_path = os.path.join(base_path, "artifacts", "preprocessor.pkl")
             
             logging.info("Attempting to load model object.")
