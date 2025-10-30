@@ -14,8 +14,9 @@
 <br>
 
 ## 🚀 Live Applicaiton
-🌐 The application is deployed and live   
-👉 [Access the web app here](enter the url)  
+🌐 The application is deployed and live  
+  
+> 👉 [Access the web app here](enter the url)  
   
 > [!NOTE]  
 > The web app may take 1-2 minutes to load.  
@@ -234,7 +235,10 @@ The app will be available at: **http://127.0.0.1:5000/**
 <br>
 
 # 🌐 Usage Guide    
-1️⃣ Open the web app in your browser.    
+
+> [Access the web app](enter the url)  
+    
+1️⃣ Open the web app in your browser.      
 2️⃣ Click "Predict" on the home page of the web app.  
 3️⃣ Enter the customer details in the respective dropdowns.   
 4️⃣ Click "Predict" and scroll down, the predicted results will appear.  
