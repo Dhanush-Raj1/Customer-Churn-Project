@@ -2,7 +2,8 @@
 <p align="center"> 
    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=black&labelColor=white&color=red" />
    <img src="https://img.shields.io/badge/Github Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=black&labelColor=white&color=0bce7e" />
-   <img src="https://img.shields.io/badge/AWS EKS-326CE5?style=for-the-badge&logo=kubernetes&logoColor=black&labelColor=white&color=727672" />
+   <img src="https://img.shields.io/badge/AWS EKS-326CE5?style=for-the-badge&logo=kubernetes&logoColor=black&labelColor=white&color=0099ff" />
+   <img src="https://img.shields.io/badge/AWS ECR-326CE5?style=for-the-badge&logo=kubernetes&logoColor=black&labelColor=white&color=0099ff" />
    <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=black&labelColor=white&color=teal" />
    <img src="https://img.shields.io/badge/Scikit learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=black&labelColor=white&color=cyan" />
    <img src="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=HTML5&logoColor=black&labelColor=white&color=brightgreen" />
@@ -11,6 +12,19 @@
 <h3 align="center"> End to End MLOps Data Science Project: Predicting Customer Churn in a Telecom Company</h3>
 <h3 align="center"> Deployed to AWS EKS with Github Actions CI/CD </h3>
 
+<br>
+
+## 🚀 Live Applicaiton
+🌐 The application is deployed and live  
+  
+> 👉 [Access the web app here](enter the url)  
+  
+> [!NOTE]  
+> The web app may take 1-2 minutes to load.  
+  
+> [!TIP]  
+> For the best experience, please refer to the [Usage Guide](#-usage-guide) section below to learn how to navigate and use the web app effectively.
+  
 <br>
 
 # 📌 Churn Predictor  
@@ -222,10 +236,13 @@ The app will be available at: **http://127.0.0.1:5000/**
 <br>
 
 # 🌐 Usage Guide    
-1️⃣ Open the web app in your browser.    
-2️⃣ Click the predict on the home page of the web app.  
+
+> [Access the web app](enter the url)  
+    
+1️⃣ Open the web app in your browser.      
+2️⃣ Click "Predict" on the home page of the web app.  
 3️⃣ Enter the customer details in the respective dropdowns.   
-4️⃣ Click the predit button and the predicted results will appear.  
+4️⃣ Click "Predict" and scroll down, the predicted results will appear.  
 
 <br>
 
