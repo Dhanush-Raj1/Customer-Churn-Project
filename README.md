@@ -17,7 +17,7 @@
 ## 🚀 Live Applicaiton
 🌐 The application is deployed and live  
   
-> 👉 [Access the web app here](enter the url)  
+> 👉 [Access the web app here](https://ideological-tawnya-dhanushraj-7934196e.koyeb.app/)  
   
 > [!NOTE]  
 > The web app may take 1-2 minutes to load.  
@@ -237,7 +237,7 @@ The app will be available at: **http://127.0.0.1:5000/**
 
 # 🌐 Usage Guide    
 
-> [Access the web app](enter the url)  
+> [Access the web app](https://ideological-tawnya-dhanushraj-7934196e.koyeb.app/)  
     
 1️⃣ Open the web app in your browser.      
 2️⃣ Click "Predict" on the home page of the web app.  
